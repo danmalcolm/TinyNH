@@ -1,0 +1,65 @@
+﻿@model TinyNH.DemoStore.Admin.Controllers.Products.EditModel
+
+@{
+	ViewBag.Title = "Edit Products";
+}
+
+<h1>@Html.ActionLink("Products", "Index") > Edit Product</h1>
+
+@using (Html.BeginForm("Save", "Products"))
+{
+	<div>
+		<fieldset>
+			<legend>Product Information</legend>
+			@Html.HiddenFor(x => x.Input.Id)
+			<div class="editor-label">
+				@Html.LabelFor(m => m.Input.Code)
+			</div>
+			<div class="editor-field">
+				@Html.TextBoxFor(m => m.Input.Code)
+				@Html.ValidationMessageFor(m => m.Input.Code)
+			</div>
+
+			<div class="editor-label">
+				@Html.LabelFor(m => m.Input.Name)
+			</div>
+			<div class="editor-field">
+				@Html.TextBoxFor(m => m.Input.Name)
+				@Html.ValidationMessageFor(m => m.Input.Name)
+			</div>
+
+			<div class="editor-label">
+				@Html.LabelFor(m => m.Input.Description)
+			</div>
+			<div class="editor-field">
+				@Html.TextAreaFor(m => m.Input.Description)
+				@Html.ValidationMessageFor(m => m.Input.Description)
+			</div>
+			<div class="editor-label">
+				@Html.LabelFor(m => m.Input.SupplierId)
+			</div>
+			<div class="editor-field">
+				@Html.DropDownListFor(m => m.Input.SupplierId, Model.SupplierOptions)
+				@Html.ValidationMessageFor(m => m.Input.SupplierId)
+			</div>
+			<div class="editor-label">
+				@Html.LabelFor(m => m.Input.CategoryId)
+			</div>
+			<div class="editor-field">
+				@Html.DropDownListFor(m => m.Input.CategoryId, Model.CategoryOptions)
+				@Html.ValidationMessageFor(m => m.Input.CategoryId)
+			</div>
+			<div class="editor-label">
+				@Html.LabelFor(m => m.Input.UnitsInStock)
+			</div>
+			<div class="editor-field">
+				@Html.TextBoxFor(m => m.Input.UnitsInStock)
+				@Html.ValidationMessageFor(m => m.Input.UnitsInStock)
+			</div>
+
+			<div>
+				<input type="submit" value="Save Changes" />
+			</div>
+		</fieldset>
+	</div>
+}

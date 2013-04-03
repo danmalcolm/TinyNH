@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title - TinyNH Store Admin</title>
+    <link rel="stylesheet" href="@Url.Content("~/content/site.css")" type="text/css"/>
+</head>
+<body>
+    <div class="main">
+        <header>
+            TinyNH - All the power of NHibernate in 150 lines or less!
+            <nav>
+                @Html.ActionLink("Home", "Index", "Home") / @Html.ActionLink("Manage Products", "Index", "Products") / @Html.ActionLink("Set up Database", "Index", "DatabaseSetUp") /
+            </nav>
+            @if (TempData.ContainsKey("flash-message"))
+            {
+                <div class="notification">
+                    @TempData["flash-message"]
+                </div>
+            }
+        </header>
+        <h1>
+	        TinyNH Store Demo - @ViewBag.Title
+        </h1>
+
+        @RenderBody()
+    </div>
+</body>
+</html>

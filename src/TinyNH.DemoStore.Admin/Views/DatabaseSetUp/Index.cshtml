@@ -1,0 +1,31 @@
+﻿@model TinyNH.DemoStore.Admin.Controllers.DatabaseSetUp.DatabaseInfo
+
+@{
+	ViewBag.Title = "Database Setup";
+    string resetLabel = "";
+}
+
+@if(Model.Ready)
+{
+    resetLabel = "Recreate Database";
+    
+    <h2>Database Ready</h2>
+    <p>The database appears to be set up correctly.</p>
+    <p>Click below if you want to recreate your local database. This will clear any existing data.</p>
+}
+else
+{
+    resetLabel = "Set up Database";
+    
+    <h2>Database Not Ready</h2>
+    <p>Your database does not appear to be set up correctly. The following error occured when trying to load some product data: <br />
+        <pre>@Model.Message</pre>   
+        <p>Click below to set up your local database</p>
+    </p>
+}
+
+@using(Html.BeginForm("Setup", "DatabaseSetUp", FormMethod.Post))
+{
+    <input type="submit" value="@resetLabel" />       
+}
+

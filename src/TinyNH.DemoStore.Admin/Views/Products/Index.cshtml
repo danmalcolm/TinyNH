@@ -1,0 +1,31 @@
+﻿@model TinyNH.DemoStore.Admin.Controllers.Products.ListModel
+
+@{
+	ViewBag.Title = "Products";
+}
+
+<h1>Products</h1>
+<p>@Html.ActionLink("Create Product", "New")</p>
+<table>
+	<thead>
+		<tr>
+			<th>Code</th>	
+			<th>Name</th>	
+			<th>Type</th>	
+			<th>Supplier</th>	
+			<th>Units In Stock</th>	
+		</tr>
+	</thead>
+	<tbody>
+		@foreach(var product in Model.Products)
+		{
+			<tr>
+				<td>@Html.ActionLink(@product.Code, "Edit", new { id = product.Id }, new { title = "Edit details of this product"})</td>
+				<td>@product.Name</td>
+				<td>@product.Category.Name</td>
+				<td>@product.Supplier.Name</td>
+				<td>@product.UnitsInStock.ToString("G")</td>
+			</tr>
+		}
+	</tbody>
+</table>
