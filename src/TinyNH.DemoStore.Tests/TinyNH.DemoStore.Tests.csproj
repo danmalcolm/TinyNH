@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="Integration\Core\Domain\NHibernate\CategoryPersistenceTests.cs" />
     <Compile Include="Integration\Core\Domain\NHibernate\ConfigurationTests.cs" />
+    <Compile Include="Integration\Core\Domain\NHibernate\EntityTests.cs" />
     <Compile Include="Integration\Core\Domain\NHibernate\ProductPersistenceTests.cs" />
     <Compile Include="Integration\Core\Domain\NHibernate\ConfigurationBuilderTests.cs" />
     <Compile Include="Integration\Core\Domain\NHibernate\ConfigurationStoreTests.cs" />

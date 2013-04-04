@@ -15,20 +15,26 @@ namespace TinyNH.DemoStore.Core.Domain
 
 		#region Equals / hashcode
 
-		public virtual bool Equals(Entity other)
-		{
-			if (ReferenceEquals(null, other)) return false;
-			if (ReferenceEquals(this, other)) return true;
-
-			return Equals(other.Id, this.Id);
-		}
-
 		public override bool Equals(object obj)
 		{
-			if (ReferenceEquals(null, obj)) return false;
-			if (ReferenceEquals(this, obj)) return true;
-			if (!(obj is Entity)) return false;
-			return Equals((Entity)obj);
+			var other = obj as Entity;
+
+			// Other is null or not an Entity
+			if (ReferenceEquals(null, other)) 
+				return false;
+
+			// Same object reference
+			if (ReferenceEquals(this, other))
+				return true;
+
+			// Other not of same type (we include derived types to allow for ORM proxy classes)
+			if (!this.GetType().IsInstanceOfType(other)) 
+				return false;
+			
+			if (Equals(Guid.Empty, this.Id) && Equals(Guid.Empty, other.Id))
+				return false;
+
+			return Equals(this.Id, other.Id);
 		}
 
 		public override int GetHashCode()
@@ -36,7 +42,6 @@ namespace TinyNH.DemoStore.Core.Domain
 // ReSharper disable NonReadonlyFieldInGetHashCode
             if (!hashCode.HasValue)
             {
-
                 if (Id == Guid.Empty)
                 {
                     hashCode = base.GetHashCode();
@@ -48,7 +53,6 @@ namespace TinyNH.DemoStore.Core.Domain
             }
 		    return hashCode.Value;
 // ReSharper restore NonReadonlyFieldInGetHashCode
-
 		}
 
 	    public static bool operator ==(Entity left, Entity right)
