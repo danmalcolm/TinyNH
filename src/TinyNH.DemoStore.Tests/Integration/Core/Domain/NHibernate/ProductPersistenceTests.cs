@@ -27,14 +27,16 @@ namespace TinyNH.DemoStore.Tests.Integration.Core.Domain.NHibernate
             InTransaction(session => session.Save(original));
 
             Product retrieved = null;
-            InTransaction(session => retrieved = session.Get<Product>(original.Id));
-
-            Assert.IsNotNull(retrieved);
-            Assert.AreEqual(original.Code, retrieved.Code);
-            Assert.AreEqual(original.Name, retrieved.Name);
-            Assert.AreEqual(original.Description, retrieved.Description);
-            Assert.AreEqual(original.Supplier.Id, retrieved.Supplier.Id);
-            Assert.AreEqual(original.Category.Id, retrieved.Category.Id);
+            InTransaction(session =>
+	        {
+		        retrieved = session.Get<Product>(original.Id);
+				Assert.IsNotNull(retrieved);
+				Assert.AreEqual(original.Code, retrieved.Code);
+				Assert.AreEqual(original.Name, retrieved.Name);
+				Assert.AreEqual(original.Description, retrieved.Description);
+				Assert.AreEqual(original.Supplier.Id, retrieved.Supplier.Id);
+				Assert.AreEqual(original.Category.Id, retrieved.Category.Id);
+	        });
         }
     }
 }

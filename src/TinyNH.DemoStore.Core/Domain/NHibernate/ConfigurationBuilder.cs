@@ -13,16 +13,14 @@ namespace TinyNH.DemoStore.Core.Domain.NHibernate
     /// </summary>
 	public class ConfigurationBuilder
     {
-        private Action<Configuration> customize;
+        private readonly Action<Configuration> customize;
         
-        /// <param name="customize">An optional action to customize the configuration after it has been built with standard settings. Intended to allow settings to be added when running tests, such as enabling statistcs or logging sql</param>
+        /// <param name="customize">An optional action to customize the configuration after it has been built with standard settings. Intended to allow settings to be added when running tests, such as enabling statistics or logging sql</param>
         public ConfigurationBuilder(Action<Configuration> customize = null)
 		{
 		    this.customize = customize;
 		}
-
-
-
+		
 		public Configuration Build()
 		{
 			var configuration = new Configuration();
