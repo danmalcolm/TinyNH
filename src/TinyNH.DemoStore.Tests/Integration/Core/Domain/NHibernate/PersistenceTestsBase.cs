@@ -5,6 +5,7 @@ using NHibernate.Tool.hbm2ddl;
 using NUnit.Framework;
 using TinyNH.DemoStore.Core.Domain.NHibernate;
 using TinyNH.DemoStore.Core.Infrastructure;
+using Environment = TinyNH.DemoStore.Core.Infrastructure.Environment;
 
 namespace TinyNH.DemoStore.Tests.Integration.Core.Domain.NHibernate
 {
@@ -15,7 +16,7 @@ namespace TinyNH.DemoStore.Tests.Integration.Core.Domain.NHibernate
 
         static PersistenceTestsBase()
         {
-            // Initialise configuration shared throughout test run
+            // Initialise configuration shared throughout test run via static ConfigurationStore
             var builder = new ConfigurationBuilder(c =>
             {
                 c.DataBaseIntegration(db =>
@@ -26,7 +27,7 @@ namespace TinyNH.DemoStore.Tests.Integration.Core.Domain.NHibernate
                 c.Properties["generate_statistics"] = "true";
                 
                 // Generate schema ready for tests to run
-                DatabaseSetUpHelper.RecreateIntegrationTestsDatabase();
+                DatabaseSetUpHelper.RecreateDatabase(Environment.IntegrationTests);
                 new SchemaExport(c).Create(false, true);
             });
             

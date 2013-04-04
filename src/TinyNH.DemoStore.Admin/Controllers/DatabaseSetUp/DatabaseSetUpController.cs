@@ -5,6 +5,7 @@ using NHibernate.Linq;
 using NHibernate.Tool.hbm2ddl;
 using TinyNH.DemoStore.Core.Domain;
 using TinyNH.DemoStore.Core.Infrastructure;
+using Environment = TinyNH.DemoStore.Core.Infrastructure.Environment;
 
 namespace TinyNH.DemoStore.Admin.Controllers.DatabaseSetUp
 {
@@ -48,7 +49,7 @@ namespace TinyNH.DemoStore.Admin.Controllers.DatabaseSetUp
 
         private void CreateDatabaseAndSchema()
         {
-            DatabaseSetUpHelper.RecreateLocalDevDatabase();
+            DatabaseSetUpHelper.RecreateDatabase(Environment.Dev);
             new SchemaExport(MvcApplication.ConfigurationStore.Configuration).Create(false, true);
         }
     }

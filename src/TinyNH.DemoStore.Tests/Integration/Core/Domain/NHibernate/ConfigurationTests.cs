@@ -11,7 +11,7 @@ namespace TinyNH.DemoStore.Tests.Integration.Core.Domain.NHibernate
 		[Test]
 		public void configuration_and_generated_schema_should_be_valid()
 		{
-            DatabaseSetUpHelper.RecreateIntegrationTestsDatabase();
+            DatabaseSetUpHelper.RecreateDatabase(Environment.IntegrationTests);
 			var configuration = new ConfigurationBuilder().Build();
 			var sessionFactory = configuration.BuildSessionFactory();
             new SchemaExport(configuration).SetOutputFile("..\\..\\Generated\\schema.sql").Create(true, true);

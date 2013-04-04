@@ -5,20 +5,14 @@ namespace TinyNH.DemoStore.Core.Infrastructure
 {
 	public class DatabaseSetUpHelper
 	{
-	    public const string LocalDevDbName = "TinyNH.DemoStore.Dev";
-	    public const string IntegrationTestsDbName = "TinyNH.DemoStore.IntegrationTests";
+		private const string DbNameStart = "TinyNH.DemoStore";
 
-        public static void RecreateLocalDevDatabase()
-        {
-            RecreateDatabase(LocalDevDbName);
-        }
+		public static void RecreateDatabase(Environment environment)
+		{
+			RecreateDatabase(DbNameStart + "." + environment.ToString());
+		}
 
-        public static void RecreateIntegrationTestsDatabase()
-        {
-            RecreateDatabase(IntegrationTestsDbName);
-        }
-
-		public static void RecreateDatabase(string databaseName)
+		private static void RecreateDatabase(string databaseName)
 		{
 			const string commandTemplate = @"
 if exists(select * from sysdatabases where name = '{0}')
@@ -33,7 +27,7 @@ create database [{0}]";
 			string command = string.Format(commandTemplate, databaseName);
 			ExecuteSql(command, databaseName);
 		}
-        
+
 		private static void ExecuteSql(string commandText, string databaseName)
 		{
 			var connectionString = ConfigurationUtility.ReadConnectionString("setup");
