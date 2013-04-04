@@ -36,6 +36,7 @@ create database [{0}]";
 				using (var connection = new SqlConnection(connectionString))
 				{
 					connection.Open();
+					
 					using (var command = new SqlCommand(commandText, connection))
 					{
 						command.ExecuteNonQuery();
