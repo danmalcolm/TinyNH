@@ -15,10 +15,29 @@ namespace TinyNH.DemoStore.Core.Domain.NHibernate
 		private readonly ThreadSafeInitializer<Configuration> configurationInitializer;
 		private readonly ThreadSafeInitializer<ISessionFactory> factoryInitializer;
 
-		public ConfigurationStore(Func<Configuration> create)
+		/// <summary>
+		/// Creates a new ConfigurationStore
+		/// </summary>
+		/// <param name="create">Function that creates the configuration</param>
+		/// <param name="configurationReady">Action that is executed once after the configuration has been created, suitable for things like creating a demo / dev database</param>
+		/// <param name="sessionFactoryReady">Action that is executed once after the session factory has been created, suitable for things like adding demo data to the database</param>
+		public ConfigurationStore(Func<Configuration> create, Action<Configuration> configurationReady = null, Action<Configuration, ISessionFactory> sessionFactoryReady = null)
 		{
-			configurationInitializer = ThreadSafeInitializer.Create(create);
-			factoryInitializer = ThreadSafeInitializer.Create(() => Configuration.BuildSessionFactory());
+			configurationInitializer = ThreadSafeInitializer.Create(() =>
+			{
+				var configuration = create();
+				if (configurationReady != null)
+					configurationReady(configuration);
+				return configuration;
+			});
+
+			factoryInitializer = ThreadSafeInitializer.Create(() =>
+			{
+				var factory = Configuration.BuildSessionFactory();
+				if (sessionFactoryReady != null)
+					sessionFactoryReady(Configuration, factory);
+				return factory;
+			});
 		}
 
 		public Configuration Configuration

@@ -31,9 +31,13 @@ namespace TinyNH.DemoStore.Core.Domain.NHibernate
 				db.BatchSize = 100;
 			});
 			configuration.CurrentSessionContext<CallSessionContext>();
-			
-            // example of adding other properties
-			configuration.AddProperties(new Dictionary<string, string> { { "generate_statistics", "false" } });
+
+			var props = new Dictionary<string, string>
+			{
+				{"generate_statistics", "false"},
+				{"hbm2ddl.keywords", "auto-quote"}
+			};
+			configuration.AddProperties(props);
 			
 			ModelMapping.Add(configuration);
 
