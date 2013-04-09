@@ -1,6 +1,6 @@
 TinyNH
 
-An extremely lightweight infrastructure for simple projects using NHibernate
+An extremely lightweight template / example project infrastructure for simple projects using NHibernate
 
 
 
