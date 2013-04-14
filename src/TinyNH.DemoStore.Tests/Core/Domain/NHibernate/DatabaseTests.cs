@@ -25,12 +25,12 @@ namespace TinyNH.DemoStore.Tests.Core.Domain.NHibernate
                     db.LogSqlInConsole = true;
                 });
                 c.Properties["generate_statistics"] = "true";
-                
+
                 // Generate schema ready for tests to run
                 DatabaseSetUpHelper.RecreateDatabase(Environment.IntegrationTests);
                 new SchemaExport(c).Create(false, true);
             });
-            
+
             ConfigurationStore = new ConfigurationStore(builder.Build);
         }
 
@@ -39,7 +39,7 @@ namespace TinyNH.DemoStore.Tests.Core.Domain.NHibernate
         {
             InTransaction(ResetDatabase);
         }
-        
+
         // Removes all data from test database, leaving it in a clean state for next test
         public static void ResetDatabase(ISession session)
         {

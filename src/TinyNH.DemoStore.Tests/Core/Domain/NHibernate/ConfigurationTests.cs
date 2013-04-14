@@ -3,17 +3,17 @@ using NUnit.Framework;
 
 namespace TinyNH.DemoStore.Tests.Core.Domain.NHibernate
 {
-	[TestFixture]
-	public class ConfigurationTests : DatabaseTests
-	{
-		[Test]
-		public void configuration_should_be_valid()
-		{
+    [TestFixture]
+    public class ConfigurationTests : DatabaseTests
+    {
+        [Test]
+        public void configuration_should_be_valid()
+        {
             // Tests overall configuration
-		    var configuration = ConfigurationStore.Configuration;
+            var configuration = ConfigurationStore.Configuration;
             // This will catch any non-virtual properties on lazy entities
-		    var sessionFactory = ConfigurationStore.SessionFactory;
-		}
+            var sessionFactory = ConfigurationStore.SessionFactory;
+        }
 
         [Test]
         public void generated_schema_should_be_valid()
@@ -25,5 +25,5 @@ namespace TinyNH.DemoStore.Tests.Core.Domain.NHibernate
             new SchemaExport(configuration).SetOutputFile("..\\..\\Generated\\schema.sql").Create(true, true);
         }
 
-	}
+    }
 }

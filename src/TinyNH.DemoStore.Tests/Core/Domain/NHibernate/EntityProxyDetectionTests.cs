@@ -17,7 +17,7 @@ namespace TinyNH.DemoStore.Tests.Core.Domain.NHibernate
             };
             InTransaction(session => session.Save(supplier1));
 
-            var getTypeUnproxiedMethod = typeof (Supplier).GetMethod("GetTypeUnproxied", BindingFlags.NonPublic | BindingFlags.Instance);
+            var getTypeUnproxiedMethod = typeof(Supplier).GetMethod("GetTypeUnproxied", BindingFlags.NonPublic | BindingFlags.Instance);
             InTransaction(session =>
             {
                 var supplier2 = session.Load<Supplier>(supplier1.Id);
