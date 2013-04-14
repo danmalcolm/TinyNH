@@ -2,55 +2,42 @@
 
 namespace TinyNH.DemoStore.Core.Domain
 {
-	public abstract class Entity
-	{
-		protected Entity()
-		{
-			Id = Guid.Empty;
-		}
-
-		public virtual Guid Id { get; protected set; }
-
-		#region Equals / hashcode
-
-        /// <summary>
-        /// Returns the actual type or the concrete type being proxied if the
-        /// instance is a proxy
-        /// </summary>
-        /// <returns></returns>
-        protected virtual Type GetTypeUnproxied()
+    public abstract class Entity
+    {
+        protected Entity()
         {
-            // NHibernate generated proxies shadow the GetType() method 
-            // which returns the concrete type:
-            // https://groups.google.com/forum/?fromgroups=#!topic/sharp-architecture/3dBfm67eAjo
-            return GetType();
+            Id = Guid.Empty;
         }
 
-		public override bool Equals(object obj)
-		{
-			var other = obj as Entity;
+        public virtual Guid Id { get; protected set; }
 
-			// Other is null or not an Entity
-			if (ReferenceEquals(null, other)) 
-				return false;
+        #region Equals / hashcode
 
-			// Same object reference
-			if (ReferenceEquals(this, other))
-				return true;
+        public override bool Equals(object obj)
+        {
+            var other = obj as Entity;
 
-			// Other must be same type
-            if (GetTypeUnproxied() != other.GetTypeUnproxied()) 
-				return false;
-			
+            // Other is null or not an Entity
+            if (ReferenceEquals(null, other))
+                return false;
+
+            // Same object reference
+            if (ReferenceEquals(this, other))
+                return true;
+
+            // Other must be same type
+            if (GetTypeUnproxied() != other.GetTypeUnproxied())
+                return false;
+
             // Different unsaved entities can't be equal
-			if (Equals(Guid.Empty, this.Id) && Equals(Guid.Empty, other.Id))
-				return false;
+            if (Equals(Guid.Empty, this.Id) && Equals(Guid.Empty, other.Id))
+                return false;
 
-			return Equals(this.Id, other.Id);
-		}
+            return Equals(this.Id, other.Id);
+        }
 
-		public override int GetHashCode()
-		{
+        public override int GetHashCode()
+        {
             if (Id == Guid.Empty)
             {
                 // New entity that has not been assigned an id, use base
@@ -64,8 +51,25 @@ namespace TinyNH.DemoStore.Core.Domain
                     return (Id.GetHashCode() * 397) ^ GetTypeUnproxied().GetHashCode();
                 }
             }
-		}
+        }
 
-		#endregion
-	}
+        /// <summary>
+        /// Gets the current type, or the type being proxied if this is
+        /// an NHibernate generated proxy. NHibernate proxy classes shadow
+        /// the GetType() method which returns the type being proxied:
+        /// https://groups.google.com/forum/?fromgroups=#!topic/sharp-architecture/3dBfm67eAjo
+        ///
+        /// Calling this.GetTypeUnproxied() is not necessary, as a proxy
+        /// instance would use its own GetType implementation and return
+        /// the correct type. However, all calls to GetType()
+        /// are directed through this method to support unit tests
+        /// </summary>
+        /// <returns></returns>
+        protected virtual Type GetTypeUnproxied()
+        {
+            return GetType();
+        }
+
+        #endregion
+    }
 }

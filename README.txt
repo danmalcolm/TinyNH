@@ -38,5 +38,9 @@ You don't need to create any databases yourself to run the solution. TinyNH demo
 One more thing... Running the applications and tests within the solution will drop and recreate databases TinyNH.DemoStore.Dev and TinyNH.DemoStore.Tests. If you decided on a whim to implement a web framework called "SQL on Speed" with some funky stored procedures and you happened to do this within a TinyNH database becuase it was there, and then you happened to run TinyNH again you might lose all your work. 
 
 
+Hitting F5!
+-----------
+
+After checking out your project, choose the web application "TinyNH.DemoStore.Admin" as your start-up project and hit F5 to run. Clicking Set up Database will take you to a screen where you can set up your local development database.
 
 
