@@ -7,14 +7,14 @@ using TinyNH.DemoStore.Core.Domain.NHibernate;
 using TinyNH.DemoStore.Core.Infrastructure;
 using Environment = TinyNH.DemoStore.Core.Infrastructure.Environment;
 
-namespace TinyNH.DemoStore.Tests.Integration.Core.Domain.NHibernate
+namespace TinyNH.DemoStore.Tests.Core.Domain.NHibernate
 {
-    [TestFixture]
-    public abstract class PersistenceTestsBase
+    [TestFixture, Category("Database Test")]
+    public abstract class DatabaseTests
     {
         protected static ConfigurationStore ConfigurationStore { get; private set; }
 
-        static PersistenceTestsBase()
+        static DatabaseTests()
         {
             // Initialise configuration shared throughout test run via static ConfigurationStore
             var builder = new ConfigurationBuilder(c =>

@@ -1,11 +1,8 @@
-﻿using System.Collections.Generic;
-using NHibernate.Tool.hbm2ddl;
+using NHibernate.Cfg;
 using NUnit.Framework;
 using TinyNH.DemoStore.Core.Domain.NHibernate;
-using TinyNH.DemoStore.Core.Infrastructure;
-using NHibernate.Cfg;
 
-namespace TinyNH.DemoStore.Tests.Integration.Core.Domain.NHibernate
+namespace TinyNH.DemoStore.Tests.Core.Domain.NHibernate
 {
 	[TestFixture]
 	public class ConfigurationBuilderTests

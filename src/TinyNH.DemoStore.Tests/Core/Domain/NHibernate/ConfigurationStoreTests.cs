@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Concurrent;
 using System.Linq;
 using System.Threading;
@@ -9,7 +9,7 @@ using NHibernate.Dialect;
 using NUnit.Framework;
 using TinyNH.DemoStore.Core.Domain.NHibernate;
 
-namespace TinyNH.DemoStore.Tests.Integration.Core.Domain.NHibernate
+namespace TinyNH.DemoStore.Tests.Core.Domain.NHibernate
 {
 	[TestFixture]
 	public class ConfigurationStoreTests
@@ -98,7 +98,7 @@ namespace TinyNH.DemoStore.Tests.Integration.Core.Domain.NHibernate
 		[Test]
 		public void configuration_and_session_factory_should_be_initialised_once_when_accessed_concurrently_by_multiple_threads()
 		{
-			var values = new ConcurrentDictionary<int, Tuple<Configuration,ISessionFactory>>();
+			var values = new ConcurrentDictionary<int, Tuple<Configuration, ISessionFactory>>();
 			var builder = new TestConfigurationBuilder();
 			var store = new ConfigurationStore(builder.Build);
 

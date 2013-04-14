@@ -9,8 +9,9 @@ namespace TinyNH.DemoStore.ProductImporter
 	{
 		static void Main(string[] args)
 		{
-			var configurationStore = new ConfigurationStore(new ConfigurationBuilder().Build);
-		    new Importer(configurationStore.SessionFactory).Execute();
+			var configuration = new ConfigurationBuilder().Build();
+		    var sessionFactory = configuration.BuildSessionFactory();
+		    new Importer(sessionFactory).Execute();
 			Console.WriteLine("Import Complete. Press a key to exit");
 			Console.ReadKey();
 		}

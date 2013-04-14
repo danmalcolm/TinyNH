@@ -48,14 +48,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Integration\Core\Domain\NHibernate\CategoryPersistenceTests.cs" />
-    <Compile Include="Integration\Core\Domain\NHibernate\ConfigurationTests.cs" />
-    <Compile Include="Integration\Core\Domain\NHibernate\EntityTests.cs" />
-    <Compile Include="Integration\Core\Domain\NHibernate\ProductPersistenceTests.cs" />
-    <Compile Include="Integration\Core\Domain\NHibernate\ConfigurationBuilderTests.cs" />
-    <Compile Include="Integration\Core\Domain\NHibernate\ConfigurationStoreTests.cs" />
-    <Compile Include="Integration\Core\Domain\NHibernate\PersistenceTestsBase.cs" />
-    <Compile Include="Integration\Core\Domain\NHibernate\SupplierPersistenceTests.cs" />
+    <Compile Include="Core\Domain\EntityTests.cs" />
+    <Compile Include="Core\Domain\NHibernate\CategoryPersistenceTests.cs" />
+    <Compile Include="Core\Domain\NHibernate\ConfigurationBuilderTests.cs" />
+    <Compile Include="Core\Domain\NHibernate\ConfigurationStoreTests.cs" />
+    <Compile Include="Core\Domain\NHibernate\ConfigurationTests.cs" />
+    <Compile Include="Core\Domain\NHibernate\DatabaseTests.cs" />
+    <Compile Include="Core\Domain\NHibernate\EntityProxyDetectionTests.cs" />
+    <Compile Include="Core\Domain\NHibernate\ProductPersistenceTests.cs" />
+    <Compile Include="Core\Domain\NHibernate\SupplierPersistenceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

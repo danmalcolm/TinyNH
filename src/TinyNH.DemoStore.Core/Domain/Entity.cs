@@ -4,8 +4,6 @@ namespace TinyNH.DemoStore.Core.Domain
 {
 	public abstract class Entity
 	{
-	    private int? hashCode = null;
-
 		protected Entity()
 		{
 			Id = Guid.Empty;
@@ -14,6 +12,19 @@ namespace TinyNH.DemoStore.Core.Domain
 		public virtual Guid Id { get; protected set; }
 
 		#region Equals / hashcode
+
+        /// <summary>
+        /// Returns the actual type or the concrete type being proxied if the
+        /// instance is a proxy
+        /// </summary>
+        /// <returns></returns>
+        protected virtual Type GetTypeUnproxied()
+        {
+            // NHibernate generated proxies shadow the GetType() method 
+            // which returns the concrete type:
+            // https://groups.google.com/forum/?fromgroups=#!topic/sharp-architecture/3dBfm67eAjo
+            return GetType();
+        }
 
 		public override bool Equals(object obj)
 		{
@@ -27,10 +38,11 @@ namespace TinyNH.DemoStore.Core.Domain
 			if (ReferenceEquals(this, other))
 				return true;
 
-			// Other not of same type (we include derived types to allow for ORM proxy classes)
-			if (!this.GetType().IsInstanceOfType(other)) 
+			// Other must be same type
+            if (GetTypeUnproxied() != other.GetTypeUnproxied()) 
 				return false;
 			
+            // Different unsaved entities can't be equal
 			if (Equals(Guid.Empty, this.Id) && Equals(Guid.Empty, other.Id))
 				return false;
 
@@ -39,30 +51,19 @@ namespace TinyNH.DemoStore.Core.Domain
 
 		public override int GetHashCode()
 		{
-// ReSharper disable NonReadonlyFieldInGetHashCode
-            if (!hashCode.HasValue)
+            if (Id == Guid.Empty)
             {
-                if (Id == Guid.Empty)
+                // New entity that has not been assigned an id, use base
+                // implementation
+                return base.GetHashCode();
+            }
+            else
+            {
+                unchecked
                 {
-                    hashCode = base.GetHashCode();
-                }
-                else
-                {
-                    hashCode = Id.GetHashCode();
+                    return (Id.GetHashCode() * 397) ^ GetTypeUnproxied().GetHashCode();
                 }
             }
-		    return hashCode.Value;
-// ReSharper restore NonReadonlyFieldInGetHashCode
-		}
-
-	    public static bool operator ==(Entity left, Entity right)
-		{
-			return Equals(left, right);
-		}
-
-		public static bool operator !=(Entity left, Entity right)
-		{
-			return !Equals(left, right);
 		}
 
 		#endregion

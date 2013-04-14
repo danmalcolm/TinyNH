@@ -1,9 +1,9 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using TinyNH.DemoStore.Core.Domain;
 
-namespace TinyNH.DemoStore.Tests.Integration.Core.Domain.NHibernate
+namespace TinyNH.DemoStore.Tests.Core.Domain.NHibernate
 {
-    public class ProductPersistenceTests : PersistenceTestsBase
+    public class ProductPersistenceTests : DatabaseTests
     {
         [Test]
         public void can_persist_and_retrieve_product()
@@ -28,15 +28,15 @@ namespace TinyNH.DemoStore.Tests.Integration.Core.Domain.NHibernate
 
             Product retrieved = null;
             InTransaction(session =>
-	        {
-		        retrieved = session.Get<Product>(original.Id);
-				Assert.IsNotNull(retrieved);
-				Assert.AreEqual(original.Code, retrieved.Code);
-				Assert.AreEqual(original.Name, retrieved.Name);
-				Assert.AreEqual(original.Description, retrieved.Description);
-				Assert.AreEqual(original.Supplier.Id, retrieved.Supplier.Id);
-				Assert.AreEqual(original.Category.Id, retrieved.Category.Id);
-	        });
+            {
+                retrieved = session.Get<Product>(original.Id);
+                Assert.IsNotNull(retrieved);
+                Assert.AreEqual(original.Code, retrieved.Code);
+                Assert.AreEqual(original.Name, retrieved.Name);
+                Assert.AreEqual(original.Description, retrieved.Description);
+                Assert.AreEqual(original.Supplier.Id, retrieved.Supplier.Id);
+                Assert.AreEqual(original.Category.Id, retrieved.Category.Id);
+            });
         }
     }
 }

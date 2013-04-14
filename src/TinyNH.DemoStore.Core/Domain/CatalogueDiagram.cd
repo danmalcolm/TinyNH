@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="TinyNH.DemoStore.Core.Domain.Category">
+    <Position X="3.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAgAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Domain\Category.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TinyNH.DemoStore.Core.Domain.Product">
+    <Position X="0.75" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAIAAAAAgAAQAAAAAAAAAAAAAAAAgCAA=</HashCode>
+      <FileName>Domain\Product.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TinyNH.DemoStore.Core.Domain.Supplier">
+    <Position X="3.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAgAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Domain\Supplier.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -1,10 +1,8 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using NHibernate;
 using NHibernate.Linq;
-using Newtonsoft.Json;
 using TinyNH.DemoStore.Core.Domain;
 
 namespace TinyNH.DemoStore.ProductImporter

@@ -1,9 +1,9 @@
 using NUnit.Framework;
 using TinyNH.DemoStore.Core.Domain;
 
-namespace TinyNH.DemoStore.Tests.Integration.Core.Domain.NHibernate
+namespace TinyNH.DemoStore.Tests.Core.Domain.NHibernate
 {
-    public class SupplierPersistenceTests : PersistenceTestsBase
+    public class SupplierPersistenceTests : DatabaseTests
     {
         [Test]
         public void can_persist_and_retrieve_entity()
