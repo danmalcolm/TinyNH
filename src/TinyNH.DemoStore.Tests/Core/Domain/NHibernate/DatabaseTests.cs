@@ -25,13 +25,17 @@ namespace TinyNH.DemoStore.Tests.Core.Domain.NHibernate
                     db.LogSqlInConsole = true;
                 });
                 c.Properties["generate_statistics"] = "true";
-
-                // Generate schema ready for tests to run
-                DatabaseSetUpHelper.RecreateDatabase(Environment.IntegrationTests);
-                new SchemaExport(c).Create(false, true);
             });
 
-            ConfigurationStore = new ConfigurationStore(builder.Build);
+            ConfigurationStore = new ConfigurationStore(builder.Build,
+                configurationReady: SetupDatabase);
+        }
+
+        private static void SetupDatabase(Configuration configuration)
+        {
+            // Generate schema ready for tests to run
+            DatabaseSetUpHelper.RecreateDatabase(Environment.IntegrationTests);
+            new SchemaExport(configuration).Create(false, true);
         }
 
         [SetUp]
@@ -66,7 +70,5 @@ delete from dbo.Category";
                 transaction.Commit();
             }
         }
-
-
     }
 }
