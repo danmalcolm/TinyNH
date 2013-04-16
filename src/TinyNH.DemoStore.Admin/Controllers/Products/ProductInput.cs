@@ -67,7 +67,7 @@ namespace TinyNH.DemoStore.Admin.Controllers.Products
 			{
 				query = query.Where(x => x.Id != Id);
 			}
-			bool otherEntityUsingCode = query.Any();
+            bool otherEntityUsingCode = query.Any();
 			var results = new List<ValidationResult>();
 			if(otherEntityUsingCode)
 			{

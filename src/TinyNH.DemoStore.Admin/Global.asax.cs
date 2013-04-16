@@ -3,8 +3,6 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using NHibernate;
 using TinyNH.DemoStore.Core.Domain.NHibernate;
-using TinyNH.DemoStore.Core.NHibernate;
-using TinyNH.DemoStore.Core.NHibernate;
 using NHibernate.Cfg;
 
 namespace TinyNH.DemoStore.Admin
@@ -25,8 +23,10 @@ namespace TinyNH.DemoStore.Admin
 
 		private void SetupNHibernate()
 		{
-			var configurationBuilder = new ConfigurationBuilder(config => config.CurrentSessionContext<LazyWebSessionContext>());
-			ConfigurationStore = new ConfigurationStore(configurationBuilder.Build);
+			var builder = new ConfigurationBuilder(c =>
+                c.CurrentSessionContext<LazyWebSessionContext>());
+			ConfigurationStore = new ConfigurationStore(builder.Build);
+		    LazyWebSessionContextModule.ConfigurationStore = ConfigurationStore;
 		}
 
 		public static ConfigurationStore ConfigurationStore { get; private set; }
@@ -36,8 +36,8 @@ namespace TinyNH.DemoStore.Admin
 		/// </summary>
 		/// <remarks>
 		/// In this demo, we're choosing to make the current session available via a 
-		/// global property - there are other options, e.g. using an IOC container
-		/// but this keeps things simple
+		/// global property - there are other options that might scale better in a 
+		/// larger application, e.g. an IOC container.
 		/// </remarks>
 		public static ISession CurrentSession
 		{

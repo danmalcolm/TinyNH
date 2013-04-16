@@ -4,7 +4,6 @@ using System.IO;
 using NHibernate.Cfg;
 using NHibernate.Context;
 using NHibernate.Dialect;
-using TinyNH.DemoStore.Core.NHibernate;
 
 namespace TinyNH.DemoStore.Core.Domain.NHibernate
 {

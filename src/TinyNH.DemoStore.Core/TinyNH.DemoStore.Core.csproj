@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Domain\Entity.cs" />
+    <Compile Include="Domain\NHibernate\LazyWebSessionContextModule.cs" />
     <Compile Include="Domain\Supplier.cs" />
     <Compile Include="Infrastructure\ConfigurationUtility.cs" />
     <Compile Include="Infrastructure\DatabaseSetupHelper.cs" />
