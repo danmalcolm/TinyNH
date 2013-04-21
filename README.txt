@@ -1,13 +1,11 @@
-TinyNH - The Small Footprint NHibernate Infrastructure
+TinyNH - A Simple NHibernate Infrastructure
 ======================================================
 
-TinyNH is designed to help you get your project up and running with a simple solid NHibernate persistence infrastructure. 
+TinyNH is a demo project and series of articles designed to help you get your project up and running with a simple solid NHibernate persistence infrastructure. See contents for a full list of articles:
 
-It isn’t a framework, it’s more like a template project that demonstrates some key infrastructural elements. Each element is accompanied by an article that describes what it does and why, helps you to decide whether or not you need it and, if so, tells you how to add it to your project. 
+http://www.danmalcolm.com/2013/04/tinynh-contents.html
 
-For further details, please see the series of accompanying blog articles at:
-
-TODO
+It isn't a framework, it's more like a template project that demonstrates some key infrastructural elements that you're likely to need. Each element is accompanied by an article that describes what it does and why, helps you to decide whether or not you need it and, if so, tells you how to add it to your project. 
 
 
 Development Environment
@@ -15,11 +13,7 @@ Development Environment
 
 The solution is compatible with Visual Studio 2012 only. It includes an ASP.Net MVC v4 web application project.
 
-
-SQL Server Setup
-----------------
-
-The solution uses SQL Server Express LocalDB, which should be installed if you have Visual Studio 2012 (open a command prompt and type "where SQLLocalDB" - it should be somewhere like "C:\Program Files\Microsoft SQL Server\110\Tools\Binn\SqlLocalDB.exe").
+The solution uses SQL Server Express LocalDB, which should be available on your system if you have installed Visual Studio 2012 (open a command prompt and type "where SQLLocalDB" - it should be somewhere like "C:\Program Files\Microsoft SQL Server\110\Tools\Binn\SqlLocalDB.exe").
 
 LocalDB is a lightweight version of SQL Server Express that is ideal for running database applications in a development environment. You can browse a LocalDB instance's databases and their objects via SQL Server Management Studio or Visual Studio 2012's SQL Server Object Explorer. Just connect to instance "(localDB)\v11.0", one of the default LocalDB instances.
 
@@ -41,6 +35,9 @@ One more thing... Running the applications and tests within the solution will dr
 Hitting F5!
 -----------
 
-After checking out your project, choose the web application "TinyNH.DemoStore.Admin" as your start-up project and hit F5 to run. Clicking Set up Database will take you to a screen where you can set up your local development database.
+After checking out your project, choose the web application "TinyNH.DemoStore.Admin" as your start-up project and hit F5 to run. 
+Clicking Set up Database will take you to a screen where you can set up your local development database.
+
+If you wish to run the ProductImporter, make sure that you've set up your development database first by following the instructions above.
 
 
